@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
 
 // Données des personnes
@@ -59,17 +58,29 @@ const people = [
 const ReviewCard = ({ icon, name, email, review }) => {
   return (
     <div
-      className={cn("w-[287px] h-[160px] p-[16px 24px]")}
+      className="w-[287px] h-[160px] rounded-[12px] bg-gradient-to-b from-[#4C3182] to-[#6C4DFF] p-[1px]"
     >
-      <div className="h-full bg-[#0c0c1c] p-4 gap-[10px] rounded-[12px] shadow-[inset_0_0_44px_-4px_hsla(260,51%,41%,0.1)]">
+      <div
+        className="h-full bg-[#0c0c1c] rounded-[12px] shadow-[inset_0_-4px_44px_0_rgba(69,52,105,0.1)]"
+        style={{
+          padding: "16px 24px 16px 24px",
+          boxShadow: "inset 0 -4px 44px 0 rgba(69, 52, 105, 0.1)",
+        }}
+      >
         <div className="flex items-center gap-[8px]">
-          <Image className="rounded-full" width={32} height={32} alt={name} src={icon} />
+          <Image
+            className="rounded-full"
+            width={32}
+            height={32}
+            alt={name}
+            src={icon}
+          />
           <div>
-            <figcaption className="font-semibold text-white" style={{ fontSize: '14px' }}>{name}</figcaption>
-            <p className=" text-gray-400" style={{ fontSize: '10px' }}>{email}</p>
+            <figcaption className="text-[14px] font-semibold text-white">{name}</figcaption>
+            <p className="text-[10px] text-gray-400">{email}</p>
           </div>
         </div>
-        <blockquote className="mt-2 text-white" style={{ fontSize: '14px' }}>{review}</blockquote>
+        <blockquote className="mt-[10px] text-[14px] text-white">{review}</blockquote>
       </div>
     </div>
   );
@@ -81,37 +92,25 @@ const People = () => {
   const secondRow = people.slice(Math.ceil(people.length / 2));
 
   return (
-    <div className="relative flex flex-col items-center justify-center overflow-hidden bg-[#0c0c1c] py-16">
+    <section className="relative flex flex-col items-center justify-center overflow-hidden bg-[#0c0c1c] py-16">
       {/* Première ligne */}
       <Marquee pauseOnHover className="[--duration:20s]">
-        <div className="flex gap-6">
+        <div className="flex gap-4">
           {firstRow.map((person, index) => (
-            <ReviewCard
-              key={`person-${index}`}
-              icon={person.icon}
-              name={person.name}
-              email={person.email}
-              review={person.review}
-            />
+            <ReviewCard key={index} {...person} />
           ))}
         </div>
       </Marquee>
 
       {/* Deuxième ligne */}
-      <Marquee reverse pauseOnHover className="[--duration:20s] mt-6">
-        <div className="flex gap-6">
+      <Marquee reverse pauseOnHover className="[--duration:20s] mt-0">
+        <div className="flex gap-4">
           {secondRow.map((person, index) => (
-            <ReviewCard
-              key={`person-${index + firstRow.length}`}
-              icon={person.icon}
-              name={person.name}
-              email={person.email}
-              review={person.review}
-            />
+            <ReviewCard key={index} {...person} />
           ))}
         </div>
       </Marquee>
-    </div>
+    </section>
   );
 };
 
