@@ -17,13 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        {/* Cet import permet d'utiliser la police Aeonik Pro Medium */}
         <link
           href="https://db.onlinewebfonts.com/c/81c9cfcec66a1bb46e90e184f4d04641?family=Aeonik+Pro+Medium"
           rel="stylesheet"
         ></link>
       </head>
-      <body className={`${inter.className} antialiased bg-background`}>
+      <body
+        className={`${inter.className} antialiased bg-background h-screen overflow-hidden`}
+      >
         {children}
       </body>
     </html>

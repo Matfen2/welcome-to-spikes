@@ -1,12 +1,14 @@
-import Header from './components/Header';
-import People from './components/People';
-import Footer from './components/Footer';
+import Header from "./components/Header";
+import People from "./components/People";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="h-full">
+    <main className="h-screen overflow-hidden flex flex-col bg-[#0c0c1c]">
       <Header />
-      <People />
+      <div className="flex-grow">
+        <People />
+      </div>
       <Footer />
     </main>
   );

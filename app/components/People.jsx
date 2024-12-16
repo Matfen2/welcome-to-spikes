@@ -59,28 +59,17 @@ const people = [
 const ReviewCard = ({ icon, name, email, review }) => {
   return (
     <div
-      className={cn("w-72 p-[2px] rounded-lg")}
-      style={{
-        background: "linear-gradient(to bottom, hsla(260, 93%, 17%, 1), hsla(260, 63%, 51%, 1))",
-      }}
+      className={cn("w-[287px] h-[160px] p-[16px 24px]")}
     >
-      <div className="flex flex-col h-full bg-card p-4 rounded-lg shadow-lg">
-        <div className="flex items-center gap-3">
-          <Image
-            className="rounded-full"
-            width={40}
-            height={40}
-            alt={name}
-            src={icon}
-          />
+      <div className="h-full bg-[#0c0c1c] p-4 gap-[10px] rounded-[12px] shadow-[inset_0_0_44px_-4px_hsla(260,51%,41%,0.1)]">
+        <div className="flex items-center gap-[8px]">
+          <Image className="rounded-full" width={32} height={32} alt={name} src={icon} />
           <div>
-            <figcaption className="text-lg font-semibold text-foreground">
-              {name}
-            </figcaption>
-            <p className="text-sm text-muted-foreground">{email}</p>
+            <figcaption className="font-semibold text-white" style={{ fontSize: '14px' }}>{name}</figcaption>
+            <p className=" text-gray-400" style={{ fontSize: '10px' }}>{email}</p>
           </div>
         </div>
-        <blockquote className="mt-3 text-sm text-foreground">{review}</blockquote>
+        <blockquote className="mt-2 text-white" style={{ fontSize: '14px' }}>{review}</blockquote>
       </div>
     </div>
   );
@@ -92,28 +81,35 @@ const People = () => {
   const secondRow = people.slice(Math.ceil(people.length / 2));
 
   return (
-    <div className="relative flex flex-col items-center justify-center space-y-1 overflow-hidden bg-background py-10">
-      <Marquee pauseOnHover className="[--duration:20s] flex space-x-6">
-        {firstRow.map((person, index) => (
-          <ReviewCard
-            key={`person-${index}`}
-            icon={person.icon}
-            name={person.name}
-            email={person.email}
-            review={person.review}
-          />
-        ))}
+    <div className="relative flex flex-col items-center justify-center overflow-hidden bg-[#0c0c1c] py-16">
+      {/* Première ligne */}
+      <Marquee pauseOnHover className="[--duration:20s]">
+        <div className="flex gap-6">
+          {firstRow.map((person, index) => (
+            <ReviewCard
+              key={`person-${index}`}
+              icon={person.icon}
+              name={person.name}
+              email={person.email}
+              review={person.review}
+            />
+          ))}
+        </div>
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s] flex space-x-6">
-        {secondRow.map((person, index) => (
-          <ReviewCard
-            key={`person-${index + firstRow.length}`}
-            icon={person.icon}
-            name={person.name}
-            email={person.email}
-            review={person.review}
-          />
-        ))}
+
+      {/* Deuxième ligne */}
+      <Marquee reverse pauseOnHover className="[--duration:20s] mt-6">
+        <div className="flex gap-6">
+          {secondRow.map((person, index) => (
+            <ReviewCard
+              key={`person-${index + firstRow.length}`}
+              icon={person.icon}
+              name={person.name}
+              email={person.email}
+              review={person.review}
+            />
+          ))}
+        </div>
       </Marquee>
     </div>
   );

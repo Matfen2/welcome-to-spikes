@@ -1,22 +1,25 @@
-import React from 'react';
-import Image from 'next/image';
-import logoSpike from '../../public/picts/Spikes Logo.png';
+import React from "react";
+import logo from "../../public/picts/Spikes Logo.svg"
+import { GridPattern } from "../../public/grid-pattern";
+import Image from "next/image";
 
 const Header = () => {
   return (
-    <div
-      className="h-64 flex items-center justify-center"
-      style={{
-        backgroundImage: "url('/picts/VectorUp.png')", 
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="flex items-center space-x-4 absolute top-10 left-50">
-        <Image src={logoSpike} className='-mt-50' alt="Spikes Logo" width={150} height={50} />
+    <header className="relative h-[390.59px] flex items-center justify-center bg-[#0c0c1c] overflow-hidden">
+      {/* Grid en SVG */}
+      <GridPattern className="absolute inset-0 w-full h-full opacity-20" style={{color: 'hsba(226, 8%, 87%, 0)'}} />
+
+      {/* Logo */}
+      <div className="relative z-10 flex items-center justify-center">
+        <div className="flex items-center gap-2">
+          <Image
+            src={logo}
+            alt="Spikes Logo"
+            className="w-[121px] h-[32px]"
+          />
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 
